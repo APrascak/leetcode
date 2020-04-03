@@ -33,3 +33,17 @@ class Solution {
         
     }
 }
+
+// Recursive solution
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        return swap(null, head);
+    }
+    
+    public static ListNode swap(ListNode x, ListNode y) {
+        if (y == null) return x;
+        ListNode ref = y.next;
+        y.next = x;
+        return swap(y, ref);
+    }
+}
