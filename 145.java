@@ -10,6 +10,8 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+
+// Iterative Solution
 class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> order = new ArrayList<>();
@@ -41,4 +43,19 @@ class Solution {
         
     }
     
+}
+
+// Recursive Solution
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        return traverse(root, new ArrayList<>());
+    }
+    
+    public List<Integer> traverse(TreeNode curr, List<Integer> order) {
+        if (curr == null) return order;
+        order = traverse(curr.left, order);
+        order = traverse(curr.right, order);
+        order.add(curr.val);
+        return order;
+    }
 }
