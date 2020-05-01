@@ -1,6 +1,7 @@
 // Search a 2D Matrix II
 // 30 April 2020
 
+// DP solution: I think O(mn) space and time
 class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
         if (matrix.length == 0) return false;
@@ -21,4 +22,24 @@ class Solution {
         dp[row][col] = true;
         return false;
     }
+}
+
+// Iterative solution O(m+n) time O(1) space
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if (matrix.length == 0) return false;
+        int row = matrix.length - 1; // start from bottom left corner
+        int col = 0;
+        while (col < matrix[0].length && row >= 0) {
+            if (matrix[row][col] < target) {
+                col++;
+            } else if (matrix[row][col] > target) {
+                row--;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
