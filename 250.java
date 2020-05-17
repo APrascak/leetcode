@@ -1,15 +1,31 @@
 // Count Univalue Subtrees
 // 24 April 2020
 
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
+// O(n) solution with O(1) time (17 May 2020)
+class Solution {
+    int max = 0;
+    public int countUnivalSubtrees(TreeNode root) {
+        helper(root);
+        return max;
+    }
+    
+    private boolean helper(TreeNode curr) {
+        if (curr == null)
+            return true;
+        boolean left = helper(curr.left);
+        boolean right = helper(curr.right);
+        if (left && right) {
+            if (curr.left != null && curr.left.val != curr.val)
+                return false;
+            if (curr.right != null && curr.right.val != curr.val)
+                return false;
+            max++;
+            return true;
+        }
+        return false;
+    }
+}
+
 class Solution {
     int count;
     
